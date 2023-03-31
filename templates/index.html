@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <!-- <script type = "javascript" src="Login.js"></script> -->
+    <script type="text/javascript" src="../static/js/index.js"></script>
     <link rel = "stylesheet" href="static/css/style.css"></link>
-
     <body>
         <title>University Events</title>
         <header style=" text-align: center;
@@ -12,7 +11,8 @@
                         ><b>University Events</b>
         </header>
 
-        <div style="float: left; 
+        <div id="logIn"
+             style="float: left; 
                     margin-top: 7%;
                     margin-left: 20%">
             <header style=" font-size: 35px; 
@@ -21,14 +21,14 @@
                             >Log In</header>
             <br/>
             <header style="font-size: 20px; color: #6b705c;">School Email</header>
-            <input type="email" style= "width: 300px; background-color: #ffe8d6;">
+            <input id="loginEmail" type="email" style= "width: 300px; background-color: #ffe8d6;">
             </input>
             <br/>
             <header style="font-size: 20px; color: #6b705c">Password</header>
-            <input type="password" style= "width: 300px; background-color: #ffe8d6;"></input>
+            <input id="loginPass" type="password" style= "width: 300px; background-color: #ffe8d6;"></input>
             <br/>
             <div class="box" >
-                <a href="http://127.0.0.1:5500/mainPage.html" class="button">LOG IN</a>
+                <a href="http://127.0.0.1:5500/mainPage.html" onclick="logIn()" class="button">LOG IN</a>
             </div>
             <div style="margin-top: 20px;">
                 <button type="submit" class="googleButton">
@@ -55,12 +55,12 @@
                         <div class="container">
                             <form>
                                 <label>School Name</label>
-                                <input type="text"/>
+                                <input id="studentSchool" type="text"/>
                                 <label>School Email</label>
-                                <input type="email"/>
+                                <input id="studentEmail" type="email"/>
                                 <label>Password</label>
-                                <input type="password"/>
-                                <input type="submit" value="Create Student Account"/>
+                                <input id="studentPass" type="password"/>
+                                <input type="submit" onclick="studentRegister()" value="Create Student Account"/>
                             </form>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
                         <div class="container">
                             <form>
                                 <br>
-                                <label>School Name</label>
-                                <input type="text"/>
-                                <label>School Email</label>
-                                <input type="email"/>
+                                <label >School Name</label>
+                                <input id="superAdminSchool" type="text"/>
+                                <label >School Email</label>
+                                <input id="superAdminEmail" type="email"/>
                                 <label>Password</label>
-                                <input type="password"/>
-                                <input type="submit" value="Create SuperAdmin Account"/>
+                                <input id="superAdminPass" type="password"/>
+                                <input type="submit" onclick="superAdminRegister()" value="Create SuperAdmin Account"/>
                             </form>
                         </div>
                     </div>
@@ -100,12 +100,12 @@
                         <div class="container">
                             <form>
                                 <label>School Name</label>
-                                <input type="text"/>
+                                <input id="adminSchool" type="text"/>
                                 <label>School Email</label>
-                                <input type="email"/>
+                                <input id="adminEmail" type="email"/>
                                 <label>Password</label>
-                                <input type="password"/>
-                                <input type="submit" value="Create Admin Account"/>
+                                <input id="adminPass" type="password"/>
+                                <input type="submit" onclick="adminRegister()" value="Create Admin Account"/>
                             </form>
                         </div>
                     </div>
