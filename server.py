@@ -16,13 +16,10 @@ db = SQLAlchemy(app)
 class Users(db.Model):
     __tablename__ = 'Users'
     userId = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
 
     def __init__(self, username, password, email):
-        self.userId = 1
-        self.username = username
         self.password = password
         self.email = email
     
@@ -53,6 +50,10 @@ def register_post():
             password = password
         )
 
+        new_user = Users(password, email)
+        db.session.add(new_user)
+        db.session.commit()
+
         return jsonify({
                         "Success": True,
                         "Message": "User was able to registered"
@@ -64,10 +65,7 @@ def register_post():
                         "Message": "User not able to registered"
                        })
 
-    new_user = Users(username, password, email)
-    db.session.add(new_user)
-    db.session.commit()
-
+    
     return "User Registered."
     
 
