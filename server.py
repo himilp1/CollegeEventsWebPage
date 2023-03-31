@@ -1,8 +1,13 @@
+# Flask web framework
 from flask import Flask, request, redirect, jsonify, render_template
-from flask_sqlalchemy import SQLAlchemy
+
+# Tables
+from tables.tables import Users, db
+
+# Firebase imports for Authenticating users
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import auth
+from firebase_admin import credentials, auth
+
 
 cred = credentials.Certificate("firebase_sdk.json")
 firebase_admin.initialize_app(cred)
@@ -10,19 +15,7 @@ firebase_admin.initialize_app(cred)
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/cop4710'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-
-class Users(db.Model):
-    __tablename__ = 'Users'
-    userId = db.Column(db.Integer, primary_key = True)
-    password = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
-
-    def __init__(self, password, email):
-        self.password = password
-        self.email = email
-    
+db.init_app(app)
 
 @app.route('/')
 def hello():
