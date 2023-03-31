@@ -23,12 +23,10 @@ class Users(db.Model):
 
 @app.route('/')
 def hello():
-    return render_template('Login.html')
+    return render_template('index.html')
     
     
-
-
-@app.route('/login')
+@app.route('/', methods = ['POST'])
 def login():
 
     username = request['username']
@@ -37,7 +35,7 @@ def login():
 
 
 @app.route('/registerUser')
-def registerUser():
+def login_pos():
     role = request['role']
     username = 'Nick1052'
     password = 'test123'
