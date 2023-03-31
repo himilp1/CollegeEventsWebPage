@@ -1,28 +1,22 @@
-from flask import Flask, request, jsonify, render_template
-from flask_sqlalchemy import SQLAlchemy
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import auth
+# Flask web framework
+from flask import Flask, request, redirect, jsonify, render_template
 
+# Tables
+from tables.tables import Users, db
+
+# Firebase imports for Authenticating users
+import firebase_admin
+from firebase_admin import credentials, auth
+
+#Initialzing Firebase
 cred = credentials.Certificate("firebase_sdk.json")
 firebase_admin.initialize_app(cred)
 
+#initialzing flask web app
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/cop4710'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-
-class Users(db.Model):
-    __tablename__ = 'Users'
-    userId = db.Column(db.Integer, primary_key = True)
-    password = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
-
-    def __init__(self, username, password, email):
-        self.password = password
-        self.email = email
-    
+db.init_app(app)
 
 @app.route('/')
 def hello():
@@ -32,41 +26,47 @@ def hello():
 @app.route('/login', methods = ['POST'])
 def login_post():
 
-    username = request['username']
-    password = request['password']
+    contents = request.json
 
-    
-
-@app.route('/register')
+# Done for now
+# Reciev
+@app.route('/register', methods = ['POST', 'GET'])
 def register_post():
     
-    password = request.form['password']
-    email = request.form['email']
+    if request.method == 'POST':
+        content = request.json
+        try:
 
-    
-    try:
-        user = auth.create_user(
-            email = email,
-            password = password
-        )
+            user = auth.create_user(
+                email = content['email'],
+                password = content['password']
+            )
 
-        new_user = Users(password, email)
-        db.session.add(new_user)
-        db.session.commit()
+            new_user = Users(user.uid, content['role'], content['email'])
+            db.session.add(new_user)
+            db.session.commit()
 
-        return jsonify({
-                        "Success": True,
-                        "Message": "User was able to registered"
-                       })
-    
-    except:
-        return jsonify({
-                        "Success": False,
-                        "Message": "User not able to registered"
-                       })
+            response = jsonify({
+                        'Success': True,
+                        'Message': 'User successfully registered!',
+                        'redirect_url': '/'
+                    })
+            response.status_code = 302
+            response.headers['Location'] = '/'
 
-    
-    return "User Registered."
+            return response
+        
+        except Exception as e:
+            return jsonify({
+                            "Success": False,
+                            "Message": "User not able to registered" + str(e)
+                        })
+    else:
+        render_template('/')
+
+@app.route('/mainPage')
+def mainPage():
+    return render_template('mainPage.html')
     
 
 
