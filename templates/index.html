@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <!-- <script type = "javascript" src="Login.js"></script> -->
+    <link rel = "stylesheet" href="static/css/style.css"></link>
+
+    <body>
+        <title>University Events</title>
+        <header style=" text-align: center;
+                        font-size: 60px;
+                        margin-top: 50px;
+                        color: #171515";
+                        ><b>University Events</b>
+        </header>
+
+        <div style="float: left; 
+                    margin-top: 7%;
+                    margin-left: 20%">
+            <header style=" font-size: 35px; 
+                            color: #403234;
+                            margin-left: 110px;" 
+                            >Log In</header>
+            <br/>
+            <header style="font-size: 20px; color: #6b705c;">School Email</header>
+            <input type="email" style= "width: 300px; background-color: #ffe8d6;">
+            </input>
+            <br/>
+            <header style="font-size: 20px; color: #6b705c">Password</header>
+            <input type="password" style= "width: 300px; background-color: #ffe8d6;"></input>
+            <br/>
+            <div class="box" >
+                <a href="http://127.0.0.1:5500/mainPage.html" class="button">LOG IN</a>
+            </div>
+            <div style="margin-top: 20px;">
+                <button type="submit" class="googleButton">
+                    <img src="static/images/google-logo.png" class="google">
+                </button>
+            </div>
+        </div>
+
+        <div style="float: right; 
+                    margin-top: 7%;
+                    margin-right: 22%">
+            <header style=" font-size: 35px; 
+                            color: #403234;"
+                            >New Account
+            </header>
+            <br/><br/>
+            <div class="box">
+                <a href="#studentButton" class="button">STUDENT</a>
+            </div>
+            <div class="overlay" id="studentButton">
+                <div class="wrapper">
+                    <a href="#" class="close">&times;</a>
+                    <div class="content">
+                        <div class="container">
+                            <form>
+                                <label>School Name</label>
+                                <input type="text"/>
+                                <label>School Email</label>
+                                <input type="email"/>
+                                <label>Password</label>
+                                <input type="password"/>
+                                <input type="submit" value="Create Student Account"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="box">
+                <a href="#superAdminButton" class="button">SUPERADMIN</a>
+            </div>
+            <div class="overlay" id="superAdminButton">
+                <div class="wrapper">
+                    <a href="#" class="close">&times;</a>
+                    <div class="content">
+                        <div class="container">
+                            <form>
+                                <br>
+                                <label>School Name</label>
+                                <input type="text"/>
+                                <label>School Email</label>
+                                <input type="email"/>
+                                <label>Password</label>
+                                <input type="password"/>
+                                <input type="submit" value="Create SuperAdmin Account"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="box">
+                <a href="#adminButton" class="button">ADMIN</a>
+            </div>
+            <div class="overlay" id="adminButton">
+                <div class="wrapper">
+                    <a href="#" class="close">&times;</a>
+                    <div class="content">
+                        <div class="container">
+                            <form>
+                                <label>School Name</label>
+                                <input type="text"/>
+                                <label>School Email</label>
+                                <input type="email"/>
+                                <label>Password</label>
+                                <input type="password"/>
+                                <input type="submit" value="Create Admin Account"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <button type="submit" class="googleButton">
+                    <img src="static/images/google-logo.png" class="google">
+                </button>
+            </div>
+        </div>
+        <div class="fixed-footer">
+            <div class="headerContainer">Copyright &copy; 2016 Your Company</div>        
+        </div>
+    </body>
+</html>
