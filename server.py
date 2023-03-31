@@ -28,32 +28,41 @@ def login_post():
 
     contents = request.json
 
-
-    
 # Done for now
-
-@app.route('/register', methods = ['POST'])
+# Reciev
+@app.route('/register', methods = ['POST', 'GET'])
 def register_post():
     
-    content = request.json
-    
-    try:
-        user = auth.create_user(
-            email = content['email'],
-            password = content['password']
-        )
+    if request.method == 'POST':
+        content = request.json
+        try:
 
-        new_user = Users(user.uid, content['password'], content['email'])
-        db.session.add(new_user)
-        db.session.commit()
+            user = auth.create_user(
+                email = content['email'],
+                password = content['password']
+            )
 
-        return 
-    
-    except Exception as e:
-        return jsonify({
-                        "Success": False,
-                        "Message": "User not able to registered" + str(e)
-                       })
+            new_user = Users(user.uid, content['role'], content['email'])
+            db.session.add(new_user)
+            db.session.commit()
+
+            response = jsonify({
+                        'Success': True,
+                        'Message': 'User successfully registered!',
+                        'redirect_url': '/'
+                    })
+            response.status_code = 302
+            response.headers['Location'] = '/'
+
+            return response
+        
+        except Exception as e:
+            return jsonify({
+                            "Success": False,
+                            "Message": "User not able to registered" + str(e)
+                        })
+    else:
+        render_template('/')
 
 @app.route('/mainPage')
 def mainPage():
