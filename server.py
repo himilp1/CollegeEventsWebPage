@@ -23,10 +23,16 @@ def hello():
     return render_template('index.html')
     
     
-@app.route('/login', methods = ['POST'])
+@app.route('/login', methods = ['POST', 'GET'])
 def login_post():
 
-    contents = request.json
+    if request.method == 'POST':
+        contents = request.json
+        user = auth.sign_in_with_email_and_password(contents['email'], contents['password'])
+
+        return "Success"
+
+
 
 # Done for now
 # Reciev
@@ -62,7 +68,7 @@ def register_post():
                             "Message": "User not able to registered" + str(e)
                         })
     else:
-        render_template('/')
+        return render_template('/')
 
 @app.route('/mainPage')
 def mainPage():
