@@ -19,7 +19,8 @@ class Users(db.Model):
     password = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
 
-    def __init__(self, username, password, email):
+    def __init__(self, password, email):
+        self.userId = 2
         self.password = password
         self.email = email
     
@@ -37,20 +38,19 @@ def login_post():
 
     
 
-@app.route('/register')
+@app.route('/register', methods = ['POST'])
 def register_post():
     
-    password = request.form['password']
-    email = request.form['email']
+    content = request.json
 
     
     try:
         user = auth.create_user(
-            email = email,
-            password = password
+            email = content['email'],
+            password = content['password']
         )
 
-        new_user = Users(password, email)
+        new_user = Users(content['password'], content['email'])
         db.session.add(new_user)
         db.session.commit()
 
