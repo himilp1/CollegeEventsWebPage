@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, redirect, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import firebase_admin
 from firebase_admin import credentials
@@ -20,7 +20,6 @@ class Users(db.Model):
     email = db.Column(db.String(50), nullable=False)
 
     def __init__(self, password, email):
-        self.userId = 2
         self.password = password
         self.email = email
     
@@ -43,7 +42,6 @@ def register_post():
     
     content = request.json
 
-    
     try:
         user = auth.create_user(
             email = content['email'],
@@ -54,10 +52,7 @@ def register_post():
         db.session.add(new_user)
         db.session.commit()
 
-        return jsonify({
-                        "Success": True,
-                        "Message": "User was able to registered"
-                       })
+        return redirect("/mainPage", code = 200)
     
     except:
         return jsonify({
@@ -65,8 +60,9 @@ def register_post():
                         "Message": "User not able to registered"
                        })
 
-    
-    return "User Registered."
+@app.route('/mainPage')
+def mainPage():
+    return render_template('mainPage.html')
     
 
 
