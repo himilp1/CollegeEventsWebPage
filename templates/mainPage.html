@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <script type="text/javascript" src="../static/js/mainPage.js"></script>
     <link rel = "stylesheet" href="static/css/style.css"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"></link>
@@ -34,15 +35,15 @@
         <div>
             <div>
                 <div class="box">
-                    <a href="#addEventButton" class="button">ADD EVENT</a>
-                    <a href="#createRSOButton" class="button">CREATE RSO</a>
-                    <a href="#addUniversityButton" class="button">ADD UNIVERSITY</a>
+                    <a id="openAddEventButton" href="#addEventButton" class="button">ADD EVENT</a>
+                    <a id="openCreateRSOButton" href="#createRSOButton" class="button">CREATE RSO</a>
+                    <a id="openAddUniButton" href="#addUniversityButton" class="button">ADD UNIVERSITY</a>
                 </div>
                 <br/>
                 <div style="margin-left: 170px;" class="box">
-                    <a href="#deleteRSOButton" class="button">DELETE RSO</a>
-                    <a href="#deleteUNIButton" class="button">DELETE UNIVERSITY</a>
-                    <a href="#joinRSOButton" class="button" style="margin-left: 600px;">JOIN RSO</a>
+                    <a id="openDeleteRSOButton" href="#deleteRSOButton" class="button">DELETE RSO</a>
+                    <a id="openDeleteUniButton" href="#deleteUNIButton" class="button">DELETE UNIVERSITY</a>
+                    <a id="openJoinRSOButton" href="#joinRSOButton" class="button" style="margin-left: 600px;">JOIN RSO</a>
                 </div>
                 <div class="overlay" id="addEventButton">
                     <div class="wrapper">
@@ -51,19 +52,19 @@
                             <div class="container">
                                 <form>
                                     <label>Event Name</label>
-                                    <input type="text"/>
+                                    <input id="eventName" type="text"/>
                                     <label>Event Description</label>
-                                    <input type="text"/>
+                                    <input id="eventDesc" type="text"/>
                                     <label>Location</label>
-                                    <input type="text"/>
+                                    <input id="location" type="text"/>
                                     <label>Date/Time</label>
-                                    <input type="text"/>
+                                    <input id="date" type="text"/>
                                     <label>Phone Contact</label>
-                                    <input type="text"/>
+                                    <input id="phone" type="text"/>
                                     <label>Email Contact</label>
-                                    <input type="email"/>
+                                    <input id="email" type="email"/>
                                     <label>Publc/Private</label>
-                                    <input type="text"/>
+                                    <input id="type" type="text"/>
                                     <input type="submit" value="Add Event"/>
                                 </form>
                             </div>
@@ -77,7 +78,7 @@
                             <div class="container">
                                 <form>
                                     <label>University Name</label>
-                                    <input type="text"/>
+                                    <input id="UniName" type="text"/>
                                     <input type="submit" value="Add University"/>
                                 </form>
                             </div>
@@ -91,17 +92,17 @@
                             <div class="container">
                                 <form>
                                     <label>RSO Name</label>
-                                    <input type="text"/>
+                                    <input id="RSOName" type="text"/>
                                     <label>RSO Description</label>
-                                    <input type="text"/>
+                                    <input id="RSODesc" type="text"/>
                                     <label>Email 1</label>
-                                    <input type="email"/>
+                                    <input id="email1" type="email"/>
                                     <label>Email 2</label>
-                                    <input type="email"/>
+                                    <input id="email2" type="email"/>
                                     <label>Email 3</label>
-                                    <input type="email"/>
+                                    <input id="email3" type="email"/>
                                     <label>Email 4</label>
-                                    <input type="email"/>
+                                    <input id="email4" type="email"/>
                                     <input type="submit" value="Create RSO"/>
                                 </form>
                             </div>
@@ -115,7 +116,7 @@
                             <div class="container">
                                 <form>
                                     <label>Enter RSO Name</label>
-                                    <input type="text"/>
+                                    <input id="deleteRSO" type="text"/>
                                     <a href="#deleteRSOConfirmation" class="button">DELETE RSO</a>
                                 </form>
                             </div>
@@ -129,7 +130,7 @@
                             <div class="container">
                                 <form>
                                     <label>Enter University Name</label>
-                                    <input type="text"/>
+                                    <input id="deleteUni" type="text"/>
                                     <div style="align-items: center;">
                                         <a href="#deleteUNIConfirmation" class="button">DELETE UNIVERSITY</a>
                                     </div>
