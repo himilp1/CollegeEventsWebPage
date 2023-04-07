@@ -63,17 +63,24 @@ def register_post():
                         "Message": "User not able to registered" + str(e)
                     })
 
+@app.post('/joinRSO')
 def joinRSO():
     pass
 
 
 # EVENT FUNCTIONS
+@app.get('/viewEvent')
 def viewEvents():
     pass
+
+@app.post('/addEvent')
 def addEvent():
     pass
+@app.delete('/delEvent')
 def delEvent():
     pass
+
+@app.put('/modifyEvent')
 def modifyEvent():
     pass
 
