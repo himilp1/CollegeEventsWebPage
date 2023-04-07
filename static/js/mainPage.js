@@ -64,15 +64,17 @@ function createRSO(){
     let email1 = document.getElementById("email1").value;
     let email2 = document.getElementById("email2").value;
     let email3 = document.getElementById("email3").value;
-    let email4 = document.getElementById("email5").value;
-    
+    let email4 = document.getElementById("email4").value;
+    let email5 = document.getElementById("email5").value;
+
     let RSOData = {
         "RSOName": RSOName,
         "RSODesc": RSODesc,
         "email1": email1,
         "email2": email2,
         "email3": email3,
-        "email4": email4
+        "email4": email4,
+        "email5": email5
     }
 
     const requestOptions = {
@@ -90,6 +92,7 @@ function createRSO(){
     document.getElementById("email2").value = "";
     document.getElementById("email3").value = "";
     document.getElementById("email4").value = "";
+    document.getElementById("email5").value = "";
 
     const closeButtons = document.querySelectorAll(".close");
     closeButtons.forEach(function(button) {
