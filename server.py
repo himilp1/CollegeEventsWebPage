@@ -49,10 +49,9 @@ def register_post():
         response = jsonify({
                     'Success': True,
                     'Message': 'User successfully registered!',
-                    'redirect_url': '/'
                 })
-        response.status_code = 302
-        response.headers['Location'] = '/'
+        
+        response.status_code = 200
 
         return response
     
