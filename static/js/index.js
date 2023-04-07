@@ -66,13 +66,9 @@ function studentRegister(){
         const modal = document.querySelector("#studentButton");
             modal.style.display = "block";
     });
-
-    return false;
 }
 
 function superAdminRegister(){
-
-        //Add logic to recognize superAdmin user
 
         let school = document.getElementById("superAdminSchool").value;
         let email = document.getElementById("superAdminEmail").value;
@@ -119,8 +115,6 @@ function superAdminRegister(){
 }
 
 function adminRegister(){
- 
-    //Add logic to recognize admin user
 
     let school = document.getElementById("adminSchool").value;
     let email = document.getElementById("adminEmail").value;
