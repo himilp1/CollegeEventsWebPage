@@ -1,0 +1,10 @@
+// database creation
+CREATE DATABASE cop4710;
+
+
+//TABLE CREATION
+CREATE TABLE Users(
+    userId VARCHAR(200),
+    email VARCHAR(50),
+    role VARCHAR(50),
+)
