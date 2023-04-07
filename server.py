@@ -1,5 +1,5 @@
 # Flask web framework
-from flask import Flask, request, redirect, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 
 # Tables
 from tables.tables import Users, db
@@ -19,49 +19,70 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 @app.route('/')
-def hello():
+def start():
     return render_template('index.html')
-    
-# Done for now
-# Reciev
-@app.route('/register', methods = ['POST', 'GET'])
+
+# UNIVERSITY FUNCTIONS
+def addUniversity():
+    pass
+
+def delUniversity():
+    pass
+
+# USER FUNCTIONS
+@app.post('/register')
 def register_post():
     
-    if request.method == 'POST':
+    try:
+
         content = request.json
-        try:
 
-            user = auth.create_user(
-                email = content['email'],
-                password = content['password']
-            )
+        user = auth.create_user(
+            email = content['email'],
+            password = content['password']
+        )
 
-            new_user = Users(user.uid, content['role'], content['email'])
-            db.session.add(new_user)
-            db.session.commit()
+        new_user = Users(user.uid, content['role'], content['email'])
+        db.session.add(new_user)
+        db.session.commit()
 
-            response = jsonify({
-                        'Success': True,
-                        'Message': 'User successfully registered!',
-                        'redirect_url': '/'
-                    })
-            response.status_code = 302
-            response.headers['Location'] = '/'
+        response = jsonify({
+                    'Success': True,
+                    'Message': 'User successfully registered!',
+                    'redirect_url': '/'
+                })
+        response.status_code = 302
+        response.headers['Location'] = '/'
 
-            return response
-        
-        except Exception as e:
-            return jsonify({
-                            "Success": False,
-                            "Message": "User not able to registered" + str(e)
-                        })
-    else:
-        return render_template('/')
-
-@app.route('/mainPage')
-def mainPage():
-    return render_template('mainPage.html')
+        return response
     
+    except Exception as e:
+
+        return jsonify({
+                        "Success": False,
+                        "Message": "User not able to registered" + str(e)
+                    })
+
+def joinRSO():
+    pass
+
+
+# EVENT FUNCTIONS
+def viewEvents():
+    pass
+def addEvent():
+    pass
+def delEvent():
+    pass
+def modifyEvent():
+    pass
+
+
+# RSO FUNCTIONS
+def createRSO():
+    pass
+def DelRSO():
+    pass
 
 
 if __name__ == '__main__':
