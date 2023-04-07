@@ -22,18 +22,6 @@ db.init_app(app)
 def hello():
     return render_template('index.html')
     
-    
-@app.route('/login', methods = ['POST', 'GET'])
-def login_post():
-
-    if request.method == 'POST':
-        contents = request.json
-        user = auth.sign_in_with_email_and_password(contents['email'], contents['password'])
-
-        return "Success"
-
-
-
 # Done for now
 # Reciev
 @app.route('/register', methods = ['POST', 'GET'])
