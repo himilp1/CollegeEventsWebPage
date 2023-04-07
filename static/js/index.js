@@ -18,20 +18,18 @@ function logIn(){
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error)); 
-
     document.getElementById("loginEmail").value = "";
     document.getElementById("loginPass").value = "";
 }
 
 function studentRegister(){
 
-    //Add logic to recognize student user
-
     let school = document.getElementById("studentSchool").value;
     let email = document.getElementById("studentEmail").value;
     let password = document.getElementById("studentPass").value;
 
     let loginData = {
+        "role": "student",
         "university": school,
         "email": email,
         "password": password
@@ -68,6 +66,8 @@ function studentRegister(){
         const modal = document.querySelector("#studentButton");
             modal.style.display = "block";
     });
+
+    return false;
 }
 
 function superAdminRegister(){
@@ -79,6 +79,7 @@ function superAdminRegister(){
         let password = document.getElementById("superAdminPass").value;
     
         let loginData = {
+            "role": "superAdmin",
             "university": school,
             "email": email,
             "password": password
@@ -126,6 +127,7 @@ function adminRegister(){
     let password = document.getElementById("adminPass").value;
 
     let loginData = {
+        "role": "admin",
         "university": school,
         "email": email,
         "password": password
