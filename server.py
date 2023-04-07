@@ -42,7 +42,7 @@ def register_post():
             password = content['password']
         )
 
-        new_user = Users(user.uid, content['role'], content['email'])
+        new_user = Users(user.uid, content['role'], content['email'], content['university'])
         db.session.add(new_user)
         db.session.commit()
 
