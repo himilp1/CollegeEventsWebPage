@@ -1,23 +1,36 @@
+import { auth } from "./firebase";
+import {signInWithEmailAndPassword} from "firebase/auth"
+
 function logIn(){
 
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPass").value;
 
-    let loginData = {
-        "email": email,
-        "password": password
-    }
+    auth.signInWithEmailAndPassword(auth, email, password)
+        .then(data => {
+            console.log(data)
+            window.location.href = "mainPage.html"
+        })
+    // let loginData = {
+    //     "email": email,
+    //     "password": password
+    // }
 
-    const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(loginData)
-    }
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify(loginData)
+    // }
 
-    fetch('/login', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error)); 
+    // fetch('/login', requestOptions)
+    //     .then(response => response.json())
+    //     .then(
+    //         console.log("inside"),
+    //         window.location.href = "mainPage.html"
+    //     )
+    //     .catch(error => console.error(error)); 
+
+
     document.getElementById("loginEmail").value = "";
     document.getElementById("loginPass").value = "";
 }
